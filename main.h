@@ -10,7 +10,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 
-char **parse_args( char *line);
+char **parse_args( char *);
 int main();
 
 #endif
