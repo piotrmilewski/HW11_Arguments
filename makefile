@@ -1,4 +1,3 @@
-
 all: main.o
 	gcc -o runo main.o
 
