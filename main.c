@@ -6,7 +6,7 @@
 #include "main.h"
 
 char **parse_args( char *line){
-  char **args = malloc(32 * sizeof(char *));
+  char **args = malloc(6 * sizeof(char *)); //allocate space for 5 arguments and a null terminator
   int count = 0;
   char *arg;
   while (arg=strsep(&line, " ")){ //check if any delimeters remain
