@@ -6,23 +6,28 @@
 #include "main.h"
 
 char **parse_args( char *line){
-  char retArr[8][64];
-  char **p = retArr;
+  char **args = malloc(32 * sizeof(char *));
   int count = 0;
-  while (line){
-    p[count] = strsep( p, " ");
-    count++;
+  char *arg;
+  while (arg=strsep(&line, " ")){ //check if any delimeters remain
+    args[count] = arg; //assign next argument to separated arg
+    printf("args[%d] = %s\n", count, args[count++]); //increments count after printing
   }
-  return p;
+  args[count] = NULL; //null terminate the array
+  return args;
 }
 
 int main(){
 
-  char line[200];
-  fgets( line, sizeof(line), stdin);
-  
-  char **args = parse_args( line);
-  execvp( args[0], args);
+  char cmd1[16] = "ls -a -l";
+  printf("\nExecuting: %s\n", cmd1);
+  char **args = parse_args( cmd1);
+  execvp(args[0], args);
+
+  char cmd2[16] = "ps -A";
+  printf("\nExecuting: %s\n", cmd2);
+  args = parse_args( cmd2);
+  //execvp(args[0], args);
 
   return 0;
 }
